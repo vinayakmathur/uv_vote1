@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../users.service';
 
 @Component({
   selector: 'app-signup',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-
-  constructor() { }
+  name;
+  email;
+  password;
+  address;
+  city;
+  constructor(private us: UsersService) { }
 
   ngOnInit() {
   }
+  addData() {
+    this.us.addData(this.name,this.address,this.city,this.email,this.password);
+    // console.log(this.name) 
+}
 
 }

@@ -6,7 +6,7 @@ var logger = require('morgan');
 var mongoose =require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-mongoose.connect('mongodb://localhost:27017');
+mongoose.connect('mongodb://localhost:27017/dtest');
 var app = express();
 
 // view engine setup
@@ -18,6 +18,17 @@ app.use(express.json(usersRouter));
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.setHeader('Access-Control-Allow-Methods', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  
+    // res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

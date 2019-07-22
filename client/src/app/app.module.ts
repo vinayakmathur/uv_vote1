@@ -53,7 +53,7 @@ import { UsersService } from './users.service';
     HttpClientModule,
     
   ],
-  providers: [UsersService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
