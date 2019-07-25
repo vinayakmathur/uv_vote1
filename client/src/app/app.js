@@ -1,8 +1,4 @@
 
-102
-103
-104
-105
 //app.js
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");

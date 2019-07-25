@@ -16,8 +16,19 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   addData() {
-    this.us.addData(this.name,this.address,this.city,this.email,this.password);
+    if(this.email)
+    if(this.password.length<10)
+    {
+      alert('password  must be atleast 10 characters long');
+  }
+  else
+{
+  this.us.addData(this.name,this.email,this.password,this.address,this.city);
+alert('Registeration complete, welcome '+[this.name]);
+}
+console.log(this.password.length)
     // console.log(this.name) 
 }
 
