@@ -12,13 +12,13 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
     res.setHeader('Access-Control-Allow-Methods', 'POST');
-    // res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     res.setHeader('Access-Control-Allow-Credentials', true);
   });
 
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     res.header("Access-Control-Allow-Headers", "POST, X-Requested-With, Content-Type, Accept");
 //     next();
 //   });
 
@@ -103,11 +103,12 @@ router.get('/delete/:id',(req,res)=>{
     })
     
 /////////////////////////////////////////////////////signin//////////////////////////////////////////////////////
-router.post('/signin',(req,res)=>{
+router.post('/test',(req,res)=>{
     const email = req.body.email;
     const password = req.body.password;
     console.log(email)
-UserRegister.findOne({
+    console.log("working")
+User.findOne({
         email:email
     },(err,user)=>{
         if(err){
@@ -126,7 +127,7 @@ UserRegister.findOne({
             }
         }
     })
-})
+});
 /////////////////////getdatabyid/////////////////////////////////////
 router.get('/getbyid/:id',(req,res)=>{
     let id = req.params.id;
@@ -176,4 +177,36 @@ router.post('/addRegister',function(req,res){
 
   
 });
+
+router.post('/temp',(req,res)=>{
+    console.log("This route is working");
+    const email = req.body.email;
+    const password = req.body.password;
+    console.log(email)
+    console.log("working")
+User.findOne({
+        email:email
+    },(err,user)=>{
+        if(err){
+            res.json(err);
+        }
+        else{
+            console.log(user);
+            if(user == null ){
+              res.json({message:"Check your Credentials"});
+            }
+            else if (user.password != password){
+                res.json({message:"Check your password"});
+            }
+            else{
+                res.json(user);
+            }
+        }
+    })
+})
+
+
+
+
+
 module.exports = router;

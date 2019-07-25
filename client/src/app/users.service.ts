@@ -7,7 +7,7 @@ import {Router} from '@angular/router'
   providedIn: 'root'
 })
 export class UsersService {
- res:any;
+//  res:any;
   url = 'http://localhost:3000/users';
   constructor(private http: HttpClient,private router:Router) { }
   addData(name,email,password,address,city) {
@@ -61,22 +61,22 @@ export class UsersService {
         .subscribe(res => console.log('Done'));
     }
 
-    signin(email,password){
+    signIn(email,password){
       const obj = {email, password};
       console.log(obj);
       this
         .http
-        .post(`${this.url}/signin`,obj)
+        .post(`${this.url}/temp`,obj)
         .subscribe((res:any) => {
           if(res.message){
             alert(res.message);
           }
           else{
 
-            this.router.navigateByUrl(`/home/${res._id}`);
+            this.router.navigateByUrl(`/about`);
           }
         });
-}
+    }
 getDataById(id){
   return this
     .http
