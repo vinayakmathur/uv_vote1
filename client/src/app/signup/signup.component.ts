@@ -18,7 +18,10 @@ export class SignupComponent implements OnInit {
   }
   
   addData() {
-    if(this.email)
+    if(this.email!=null)
+    {
+      alert('email must contain special character Like (!,@,#,$,%,^,&,*)');
+  }
     if(this.password.length<10)
     {
       alert('password  must be atleast 10 characters long');

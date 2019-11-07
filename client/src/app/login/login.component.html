@@ -10,14 +10,9 @@
       <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password" [(ngModel)]="password">
     </div>
     
-    <div class="radio">
-      <label>
-          <input type="radio"> candidate
-        <input type="radio"> voter
-      </label>
-    </div>
-    <button type="submit" class="btn btn-default"  (click)="signin()">signIn </button>
+    
+    <a [routerLink]="['./voting']"><button type="submit" class="btn btn-default"  (click)="signin()">signIn </button></a>
   
   </form>
-  
+  >
   </div>
